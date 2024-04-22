@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { useSelector } from "react-redux";
 import { icon } from "leaflet";
 
-const MapView = () => {
+const MapView = ({ setDetailId }) => {
   const { flights } = useSelector((store) => store.flight);
 
   // marker için kendi iconunu oluştur
@@ -22,7 +22,10 @@ const MapView = () => {
           <Popup>
             <div className="d-flex flex-column gap-2">
               <span>Kod: {flight.code}</span>
-              <button className="w-100">Detay</button>
+
+              <button onClick={() => setDetailId(flight.id)} className="w-100">
+                Detay
+              </button>
             </div>
           </Popup>
         </Marker>

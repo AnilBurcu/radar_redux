@@ -4,10 +4,14 @@ import MapView from "./pages/MapView";
 import ListView from "./pages/ListView";
 import { useDispatch } from "react-redux";
 import { getFlights } from "./redux/actions";
+import Modal from "./components/Modal";
 
 const App = () => {
+  // harita görünümü aktif mi
   const [isMapView, SetIsMapView] = useState(true);
   const dispatch = useDispatch();
+  // detayı gösterecek elemanın id'si
+  const [detailId, setDetailId] = useState(null);
 
   useEffect(() => {
     dispatch(getFlights());
@@ -29,7 +33,10 @@ const App = () => {
           Liste Görünümü
         </button>
       </div>
-      {isMapView ? <MapView /> : <ListView />}
+      {isMapView ? <MapView setDetailId={setDetailId} /> : <ListView />}
+      {detailId && (
+        <Modal detailId={detailId} close={() => setDetailId(null)} />
+      )}
     </div>
   );
 };
