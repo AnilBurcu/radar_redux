@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import MapView from "./pages/MapView";
 import ListView from "./pages/ListView";
+import { useDispatch } from "react-redux";
+import { getFlight } from "./redux/actions";
 
 const App = () => {
   const [isMapView, SetIsMapView] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFlight());
+  }, []);
   return (
     <div>
       <Header />
