@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { options } from "../../constants";
 
-export const getFlight = createAsyncThunk("flights/getFlights", async () => {
+export const getFlights = createAsyncThunk("flights/getFlights", async () => {
     // api isteği
     const res = await axios.request(options)
     console.log(res.data.aircraft)
@@ -15,7 +15,8 @@ export const getFlight = createAsyncThunk("flights/getFlights", async () => {
         lat: item[2],
         lng: item[3]
     }))
-    console.log(formatted)
+
+
     // aksiyonun payload'ı olarak formatlaan veriyi ekle
     return formatted
 })

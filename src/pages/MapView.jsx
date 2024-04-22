@@ -1,17 +1,32 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useSelector } from "react-redux";
+import { icon } from "leaflet";
+
 const MapView = () => {
+  const { flights } = useSelector((store) => store.flight);
+
+  // marker için kendi iconunu oluştur
+  const planeIcon = icon({
+    iconUrl: "plane-icon.png",
+    iconSize: [30, 30],
+  });
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={10} scrollWheelZoom={true}>
+    <MapContainer center={[38.89, 35.43]} zoom={7} scrollWheelZoom={true}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>Merhaba</Popup>
-      </Marker>
-      <Marker position={[51.555, -0.09]}></Marker>
-      <Marker position={[51.655, -0.09]}></Marker>
+      {flights.map((flight) => (
+        <Marker icon={planeIcon} position={[flight.lat, flight.lng]}>
+          <Popup>
+            <div className="d-flex flex-column gap-2">
+              <span>Kod: {flight.code}</span>
+              <button className="w-100">Detay</button>
+            </div>
+          </Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 };

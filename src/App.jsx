@@ -3,14 +3,14 @@ import Header from "./components/Header";
 import MapView from "./pages/MapView";
 import ListView from "./pages/ListView";
 import { useDispatch } from "react-redux";
-import { getFlight } from "./redux/actions";
+import { getFlights } from "./redux/actions";
 
 const App = () => {
   const [isMapView, SetIsMapView] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFlight());
+    dispatch(getFlights());
   }, []);
   return (
     <div>
