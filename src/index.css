@@ -93,3 +93,17 @@ header p {
   display: flex;
   justify-content: center;
 }
+
+.view-buttons:first-child {
+  border-radius: 6px 0 0 6px;
+}
+.view-buttons:last-child {
+  border-radius: 0 6px 6px 0;
+}
+.active {
+  background: #535bf2;
+}
+.leaflet-container {
+  height: 80vh;
+  margin-top: 30px;
+}
