@@ -1,14 +1,14 @@
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
   Polyline,
-} from "react-leaflet";
-import { useDispatch, useSelector } from "react-redux";
-import { icon } from "leaflet";
-import { setPath } from "../redux/slices/flightSlice";
+} from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import { icon } from 'leaflet';
+import { setPath } from '../redux/slices/flightSlice';
 
 const MapView = ({ setDetailId }) => {
   const { flights, path } = useSelector((store) => store.flight);
@@ -17,7 +17,7 @@ const MapView = ({ setDetailId }) => {
 
   // marker için kendi iconumuzu oluşturalım
   const planeIcon = icon({
-    iconUrl: "plane-icon.png",
+    iconUrl: 'plane-icon.png',
     iconSize: [30, 30],
   });
 

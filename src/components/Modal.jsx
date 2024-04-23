@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { dOptions } from "../constants";
-import formatDate from "../utils/formatDate";
-import { setPath } from "../redux/slices/flightSlice";
-import { useDispatch } from "react-redux";
-import c from "../utils/checkValid";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { dOptions } from '../constants';
+import formatDate from '../utils/formatDate';
+import { setPath } from '../redux/slices/flightSlice';
+import { useDispatch } from 'react-redux';
+import c from '../utils/checkValid';
 
 const Modal = ({ detailId, close }) => {
   const dispatch = useDispatch();
@@ -31,6 +31,8 @@ const Modal = ({ detailId, close }) => {
         dispatch(setPath(res.data.trail));
       });
   }, [detailId]);
+
+  console.log(d);
 
   return (
     <div className="detail-outer">
@@ -91,7 +93,7 @@ const Modal = ({ detailId, close }) => {
               <span>
                 {d.time.scheduled.departure > 0
                   ? formatDate(d.time.scheduled.departure)
-                  : "Bilinmiyor"}
+                  : 'Bilinmiyor'}
               </span>
             </p>
 
@@ -100,7 +102,7 @@ const Modal = ({ detailId, close }) => {
               <span>
                 {d.time.scheduled.arrival > 0
                   ? formatDate(d.time.scheduled.arrival)
-                  : "Bilinmiyor"}
+                  : 'Bilinmiyor'}
               </span>
             </p>
 

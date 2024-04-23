@@ -1,7 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import flightReducer from "./slices/flightSlice";
-
+import { configureStore } from '@reduxjs/toolkit';
+import flight from './slices/flightSlice';
 
 export default configureStore({
-    reducer: { flight: flightReducer }
-})
+  reducer: { flight },
+});
