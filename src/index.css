@@ -11,6 +11,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 a {
@@ -24,9 +25,9 @@ a:hover {
 
 body {
   margin: 0;
-  min-height: 100vh;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  min-height: 100vh;
 }
 
 h1 {
@@ -65,15 +66,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-/* Styles */
-
+/* STILLER */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
 }
+
 header div {
   display: flex;
   align-items: center;
@@ -81,9 +81,11 @@ header div {
   gap: 20px;
   cursor: pointer;
 }
+
 header img {
   height: 50px;
 }
+
 header p {
   font-size: 20px;
   font-weight: bold;
@@ -94,29 +96,32 @@ header p {
   justify-content: center;
 }
 
-.view-buttons:first-child {
+.view-buttons button:first-child {
   border-radius: 6px 0 0 6px;
 }
-.view-buttons:last-child {
+.view-buttons button:last-child {
   border-radius: 0 6px 6px 0;
 }
+
 .active {
   background: #535bf2;
 }
+
 .leaflet-container {
   height: 80vh;
   margin-top: 30px;
 }
-.detail-outer {
-  position: fixed; /* sabit olması için */
-  z-index: 9999;
-  height: 100vh;
 
-  top: 0;
-  left: 0;
+.detail-outer {
+  position: fixed;
+  z-index: 9999999999;
+  height: 100vh !important;
+  top: 0 !important;
+  left: 0 !important;
   display: flex;
   align-items: center;
 }
+
 .detail-inner {
   background: black;
   margin-left: 10px;
@@ -127,17 +132,55 @@ header p {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  box-shadow: 2px 2px 20px #535bf2;
 }
+
 @media (max-width: 650px) {
   .detail-outer {
     width: 100%;
   }
+
   .detail-inner {
     width: 100%;
     height: 100%;
     margin-left: 0px;
     border-radius: 0px;
   }
+}
+
+.detail-inner p {
+  display: flex;
+  gap: 10px;
+}
+
+.detail-inner p span:last-child {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.detail-inner img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.detail-inner p:last-child {
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}
+
+.yellow {
+  background: rgb(190, 190, 2);
 }
 
 .close-wrapper {
@@ -148,12 +191,90 @@ header p {
   padding-right: 10px;
   font-size: 18px;
 }
-
 .close-wrapper button {
   padding: 0;
   background: none;
   transition: all 0.3s;
 }
+
 .close-wrapper button:hover {
   filter: drop-shadow(2px 2px 10px white);
+}
+
+/* LOADER */
+.loader-wrapper {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.loader {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.55);
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: transparent;
+  border: 1px dashed#444;
+  border-radius: 50%;
+  box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px dashed#444;
+  box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loader span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  transform-origin: top left;
+  animation: radar81 2s linear infinite;
+  border-top: 1px dashed #fff;
+}
+
+.loader span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: seagreen;
+  transform-origin: top left;
+  transform: rotate(-55deg);
+  filter: blur(30px) drop-shadow(20px 20px 20px seagreen);
+}
+
+@keyframes radar81 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
